@@ -1,1 +1,1 @@
-AI BAsed Face Recognition System
+AI Based Attendance Management System
