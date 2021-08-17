@@ -11,6 +11,7 @@ class Student:
     def __init__(self,root):
         self.root = root
         self.root.geometry("1530x790+0+0")
+        self.root.state('zoomed')
         self.root.title("Face Recognition System")
 
         #==========Variables ======================
@@ -30,7 +31,7 @@ class Student:
         self.var_teacher = StringVar()
 
         # First Image
-        img = Image.open("images/admin_register_heading.jpg")
+        img = Image.open("images/student1.jpg")
         img = img.resize((500, 130), Image.ANTIALIAS)
         self.photoimg = ImageTk.PhotoImage(img)
 
@@ -38,7 +39,7 @@ class Student:
         f_lbl.place(x=0, y=0, width=500, height=130)
 
         # Second Image
-        img1 = Image.open("images/admin_register_heading.jpg")
+        img1 = Image.open("images/student2.jpg")
         img1 = img1.resize((550, 130), Image.ANTIALIAS)
         self.photoimg1 = ImageTk.PhotoImage(img1)
 
@@ -46,7 +47,7 @@ class Student:
         f_lbl.place(x=500, y=0, width=550, height=130)
 
         # Third Image
-        img2 = Image.open("images/admin_register_heading.jpg")
+        img2 = Image.open("images/student3.jpg")
         img2 = img2.resize((500, 130), Image.ANTIALIAS)
         self.photoimg2 = ImageTk.PhotoImage(img2)
 
@@ -61,8 +62,8 @@ class Student:
         bg_img = Label(self.root, image=self.photoimg3)
         bg_img.place(x=0, y=130, width=1530, height=710)
 
-        title_lbl = Label(bg_img, text="Student Management System", font=('lucida', 35, "bold"),
-                          bg='green', fg='white')
+        title_lbl = Label(bg_img, text="Student Management System", font=('Bell MT', 35, "bold"),
+                          bg='violet', fg='white')
         title_lbl.place(x=0, y=0, width=1530, height=45)
 
         main_frame = Frame(bg_img,bd=2,bg='white')
@@ -73,17 +74,11 @@ class Student:
         Left_frame = LabelFrame(main_frame,bd=2,bg='white',relief=RIDGE,text='Student Details',font=('lucida',12,'bold'))
         Left_frame.place(x=10,y=10,width=730,height=580)
 
-        img4= Image.open("images/blue-dark-gradient-texture-wall-background_28629-888.jpg")
-        img4 = img4.resize((1530, 710), Image.ANTIALIAS)
-        self.photoimg4 = ImageTk.PhotoImage(img4)
-
-        bg_img = Label(Left_frame, image=self.photoimg4)
-        bg_img.place(x=5, y=0, width=720, height=130)
 
         #Current Course
         current_frame = LabelFrame(Left_frame, bd=2, bg='white', relief=RIDGE, text='Current Course Information',
                                 font=('lucida', 12, 'bold'))
-        current_frame.place(x=5, y=130, width=720, height=110)
+        current_frame.place(x=5, y=5, width=720, height=110)
 
         #Department
         dep_label = Label(current_frame,text="Department",bg='white',font=('lucida', 12, 'bold'))
@@ -124,7 +119,7 @@ class Student:
         # Class Student Information
         class_Student_frame = LabelFrame(Left_frame, bd=2, bg='white', relief=RIDGE, text='Class Student Information',
                                    font=('lucida', 12, 'bold'))
-        class_Student_frame.place(x=5, y=250, width=720, height=300)
+        class_Student_frame.place(x=5, y=130, width=720, height=300)
 
         #student ID
         studentID_lbl = Label(class_Student_frame,text="StudentID:", bg='white', font=('lucida', 12, 'bold'))
@@ -247,18 +242,11 @@ class Student:
                                  font=('lucida', 12, 'bold'))
         Right_frame.place(x=750, y=10, width=720, height=580)
 
-        img_right = Image.open("images/city3.png")
-        img_right = img_right.resize((720, 130), Image.ANTIALIAS)
-        self.photoimg_right = ImageTk.PhotoImage(img_right)
-
-        f_lbl = Label(Right_frame, image=self.photoimg_right)
-        f_lbl.place(x=0, y=0, width=720, height=130)
-
 
         #===========Search System =============================
         Search_frame = LabelFrame(Right_frame, bd=2, bg='white', relief=RIDGE, text='Search System',
                                 font=('lucida', 12, 'bold'))
-        Search_frame.place(x=5, y=135, width=710, height=70)
+        Search_frame.place(x=5, y=10, width=710, height=70)
 
         search_lbl = Label(Search_frame, text="Search By:", bg='red', font=('lucida', 15, 'bold'),fg='white')
         search_lbl.grid(row=0, column=0, padx=10, pady=5, sticky=W)
@@ -282,7 +270,7 @@ class Student:
 
         #=======================Table Frame ==============================
         Table_frame = Frame(Right_frame, bd=2, bg='white', relief=RIDGE)
-        Table_frame.place(x=5, y=210, width=710, height=350)
+        Table_frame.place(x=5, y=80, width=710, height=460)
 
         scroll_x = ttk.Scrollbar(Table_frame, orient=HORIZONTAL)
         scroll_y = ttk.Scrollbar(Table_frame, orient=VERTICAL)
@@ -559,3 +547,4 @@ if __name__ == "__main__":
     root =Tk()
     obj = Student(root)
     root.mainloop()
+
