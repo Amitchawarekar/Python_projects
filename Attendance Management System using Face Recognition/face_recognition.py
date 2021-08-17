@@ -8,6 +8,7 @@ import os
 import mysql.connector
 from datetime import datetime
 from time import strftime
+import time
 
 
 
@@ -15,45 +16,51 @@ class Face_Recognition:
     def __init__(self,root):
         self.root = root
         self.root.geometry("1530x790+0+0")
+        self.root.state('zoomed')
         self.root.title("Face Recognition System")
 
-        title_lbl = Label(self.root, text="FACE RECOGNITION" ,font=('lucida', 35, "bold"),
+        title_lbl = Label(self.root, text="FACE RECOGNITION" ,font=('Bell MT', 35, "bold"),
                           bg='white', fg='green')
         title_lbl.place(x=0, y=0, width=1530, height=45)
 
-        img_left = Image.open("images/images (1).png")
-        img_left = img_left.resize((650, 700), Image.ANTIALIAS)
+        img_left = Image.open("images/face_reg2.jpg")
+        img_left = img_left.resize((750, 780), Image.ANTIALIAS)
         self.photoimg_left = ImageTk.PhotoImage(img_left)
 
         f_lbl = Label(self.root, image=self.photoimg_left)
-        f_lbl.place(x=5, y=55, width=650, height=700)
+        f_lbl.place(x=5, y=50, width=750, height=780)
 
-        img_right = Image.open("images/bg-1.jpg")
-        img_right = img_right.resize((950, 700), Image.ANTIALIAS)
+        img_right = Image.open("images/face_reg.jpg")
+        img_right = img_right.resize((780, 780), Image.ANTIALIAS)
         self.photoimg_right = ImageTk.PhotoImage(img_right)
 
         f_lbl1 = Label(self.root, image=self.photoimg_right)
-        f_lbl1.place(x=650, y=55, width=950, height=700)
+        f_lbl1.place(x=750, y=50, width=780, height=780)
 
         #button
         train_btn = Button(f_lbl1, text="Face Recognition",  width=17,
                            font=('lucida', 18, 'bold'),command=self.face_recognition,
-                           bg='blue', fg='white')
-        train_btn.place(x=350, y=600, width=200, height=40)
+                           bg='green', fg='white')
+        train_btn.place(x=270, y=625, width=250, height=50)
+
+
+
 
     #=======================Attendance ===========================
     def mark_attendance(self,i,r,n,d):
-        with open('amit.csv',"r+",newline="\n") as f:
-            mydatalist = f.readlines()
-            name_list = []
-            for line in mydatalist:
-                entry = line.split((","))
-                name_list.append(entry[0])
-            if ((i not in name_list) and (r not in name_list) and (n not in name_list) and (d not in name_list)): #this is for checking one user attendance is marked only once
-                now = datetime.now()
-                d1 = now.strftime("%d/%m/%Y")
-                dtString = now.strftime("%H:%M:%S")
-                f.writelines(f"\n{i},{r},{n},{d},{dtString},{d1},Present")
+        self.date_ = time.strftime("%d-%m-%Y")
+        with open(f'Attendance_Report//{self.date_}.csv', "a+", newline="\n") as file:
+            with open(f'Attendance_Report//{self.date_}.csv',"r+",newline="\n") as f:
+                mydatalist = f.readlines()
+                name_list = []
+                for line in mydatalist:
+                    entry = line.split((","))
+                    name_list.append(entry[0])
+                if ((i not in name_list) and (r not in name_list) and (n not in name_list) and (d not in name_list)): #this is for checking one user attendance is marked only once
+                    now = datetime.now()
+                    d1 = now.strftime("%d/%m/%Y")
+                    dtString = now.strftime("%H:%M:%S")
+                    f.writelines(f"\n{i},{r},{n},{d},{dtString},{d1},Present")
 
 
 
@@ -132,3 +139,4 @@ if __name__ == "__main__":
     root =Tk()
     obj = Face_Recognition(root)
     root.mainloop()
+
