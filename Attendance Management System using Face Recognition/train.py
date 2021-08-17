@@ -12,30 +12,31 @@ class Train:
     def __init__(self,root):
         self.root = root
         self.root.geometry("1530x790+0+0")
+        self.root.state('zoomed')
         self.root.title("Face Recognition System")
 
-        title_lbl = Label(self.root, text="TRAIN DATASET", font=('lucida', 35, "bold"),
+        title_lbl = Label(self.root, text="PHOTO SAMPLE TRAINING", font=('Bell MT', 35, "bold"),
                           bg='orange', fg='white')
         title_lbl.place(x=0, y=0, width=1530, height=45)
 
-        img_top = Image.open("images/blue-dark-gradient-texture-wall-background_28629-888.jpg")
-        img_top = img_top.resize((1530, 325), Image.ANTIALIAS)
+        img_top = Image.open("images/train_data_1.jpg")
+        img_top = img_top.resize((1540, 350), Image.ANTIALIAS)
         self.photoimg_top = ImageTk.PhotoImage(img_top)
 
         f_lbl = Label(self.root, image=self.photoimg_top)
-        f_lbl.place(x=5, y=50, width=1530, height=325)
+        f_lbl.place(x=0, y=50, width=1540, height=350)
 
         #==Button===========
         train_btn = Button(self.root, text="TRAIN DATA",command=self.train_classifier,width=17, font=('lucida', 20, 'bold'),
-                          bg='blue', fg='white')
-        train_btn.place(x=0, y=377, width=1530, height=60)
+                          bg='blue', fg='white',cursor='hand2')
+        train_btn.place(x=0, y=400, width=1540, height=60)
 
-        img_bottom = Image.open("images/employee_bg_image.jpg")
-        img_bottom = img_bottom.resize((1530, 325), Image.ANTIALIAS)
+        img_bottom = Image.open("images/train_data_2.jpg")
+        img_bottom = img_bottom.resize((1540, 380), Image.ANTIALIAS)
         self.photoimg_bottom = ImageTk.PhotoImage(img_bottom)
 
         f_lbl1 = Label(self.root, image=self.photoimg_bottom)
-        f_lbl1.place(x=5, y=440, width=1530, height=325)
+        f_lbl1.place(x=0, y=460, width=1540, height=380)
 
 
     def train_classifier(self):
